@@ -18,11 +18,23 @@ function unselectedTask() {
   }
 }
 function paintTask(select) {
+  const task = select.target;
   if (select !== taskList) {
     unselectedTask();
-    select.target.classList.add('selected');
+    task.classList.add('selected');
+  }
+}
+function completeTask(check) {
+  if (check !== taskList) {
+    const task = check.target;
+    if (task.classList.contains('completed')) {
+      task.classList.remove('completed');
+    } else {
+      task.classList.add('completed');
+    }
   }
 }
 
 button.onclick = inputTask;
 taskList.onclick = paintTask;
+taskList.ondblclick = completeTask;
