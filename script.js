@@ -2,6 +2,7 @@ const input = document.getElementById('texto-tarefa');
 const button = document.getElementById('criar-tarefa');
 const taskList = document.getElementById('lista-tarefas');
 const clearButton = document.getElementById('apaga-tudo');
+const clearDoneButton = document.getElementById('remover-finalizados');
 
 function clearInput() {
   input.value = '';
@@ -40,8 +41,15 @@ function clearTask() {
     taskList.removeChild(taskList.children[0]);
   }
 }
+function clearCompletedTasks() {
+  const completedList = document.getElementsByClassName('completed');
+  for (; completedList.length !== 0;) {
+    taskList.removeChild(completedList[0]);
+  }
+}
 
 button.onclick = inputTask;
 taskList.onclick = paintTask;
 taskList.ondblclick = completeTask;
 clearButton.onclick = clearTask;
+clearDoneButton.onclick = clearCompletedTasks;
