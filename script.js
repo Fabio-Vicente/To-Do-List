@@ -11,8 +11,15 @@ function inputTask() {
   taskList.appendChild(li);
   clearInput();
 }
+function unselectedTask() {
+  const beforeSelected = document.querySelector('.selected');
+  if (beforeSelected !== null) {
+    beforeSelected.classList.remove('selected');
+  }
+}
 function paintTask(select) {
   if (select !== taskList) {
+    unselectedTask();
     select.target.classList.add('selected');
   }
 }
