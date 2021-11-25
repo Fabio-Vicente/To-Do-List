@@ -11,5 +11,11 @@ function inputTask() {
   taskList.appendChild(li);
   clearInput();
 }
+function paintTask(select) {
+  if (select !== taskList) {
+    select.target.classList.add('selected');
+  }
+}
 
 button.onclick = inputTask;
+taskList.onclick = paintTask;
