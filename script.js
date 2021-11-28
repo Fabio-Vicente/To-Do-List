@@ -3,6 +3,7 @@ const button = document.getElementById('criar-tarefa');
 const taskList = document.getElementById('lista-tarefas');
 const clearButton = document.getElementById('apaga-tudo');
 const clearDoneButton = document.getElementById('remover-finalizados');
+const saveTasksButton = document.getElementById('salvar-tarefas');
 
 function clearInput() {
   input.value = '';
@@ -47,9 +48,35 @@ function clearCompletedTasks() {
     taskList.removeChild(completedList[0]);
   }
 }
+function saveTasks() {
+  const tasks = [];
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    const task = {
+      text: '',
+      state: null,
+    };
+    task.text = taskList.children[i].innerText;
+    task.state = taskList.children[i].className;
+    tasks.push(task);
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+function listSavedTasks() {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+  if (savedTasks !== null) {
+    for (let i = 0; i < savedTasks.length; i += 1) {
+      const task = document.createElement('li');
+      task.innerText = savedTasks[i].text;
+      task.className = savedTasks[i].state;
+      taskList.appendChild(task);
+    }
+  }
+}
 
+window.onload = listSavedTasks;
 button.onclick = inputTask;
 taskList.onclick = paintTask;
 taskList.ondblclick = completeTask;
 clearButton.onclick = clearTask;
 clearDoneButton.onclick = clearCompletedTasks;
+saveTasksButton.onclick = saveTasks;
