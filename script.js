@@ -4,6 +4,8 @@ const taskList = document.getElementById('lista-tarefas');
 const clearButton = document.getElementById('apaga-tudo');
 const clearDoneButton = document.getElementById('remover-finalizados');
 const saveTasksButton = document.getElementById('salvar-tarefas');
+const moveUpButton = document.getElementById('mover-cima');
+const movedownButton = document.getElementById('mover-baixo');
 
 function clearInput() {
   input.value = '';
@@ -72,11 +74,43 @@ function listSavedTasks() {
     }
   }
 }
+function moveTaskUp() {
+  const taskSelected = document.querySelector('.selected');
+  if (taskSelected === null) {
+    return;
+  }
+  const upperTask = taskSelected.previousElementSibling;
+  if (upperTask !== null) {
+    const swapName = upperTask.innerText;
+    const swapState = upperTask.className;
+    upperTask.innerText = taskSelected.innerText;
+    upperTask.className = taskSelected.className;
+    taskSelected.innerText = swapName;
+    taskSelected.className = swapState;
+  }
+}
+function moveTaskDown() {
+  const taskSelected = document.querySelector('.selected');
+  if (taskSelected === null) {
+    return;
+  }
+  const underTask = taskSelected.nextElementSibling;
+  if (underTask !== null) {
+    const swapName = underTask.innerText;
+    const swapState = underTask.className;
+    underTask.innerText = taskSelected.innerText;
+    underTask.className = taskSelected.className;
+    taskSelected.innerText = swapName;
+    taskSelected.className = swapState;
+  }
+}
 
 window.onload = listSavedTasks;
 button.onclick = inputTask;
 taskList.onclick = paintTask;
 taskList.ondblclick = completeTask;
+moveUpButton.onclick = moveTaskUp;
+movedownButton.onclick = moveTaskDown;
 clearButton.onclick = clearTask;
 clearDoneButton.onclick = clearCompletedTasks;
 saveTasksButton.onclick = saveTasks;
