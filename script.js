@@ -6,6 +6,7 @@ const clearDoneButton = document.getElementById('remover-finalizados');
 const saveTasksButton = document.getElementById('salvar-tarefas');
 const moveUpButton = document.getElementById('mover-cima');
 const movedownButton = document.getElementById('mover-baixo');
+const removeTaskButton = document.getElementById('remover-selecionado');
 
 function clearInput() {
   input.value = '';
@@ -37,6 +38,36 @@ function completeTask(check) {
     } else {
       task.classList.add('completed');
     }
+  }
+}
+function moveTaskUp() {
+  const taskSelected = document.querySelector('.selected');
+  if (taskSelected === null) {
+    return;
+  }
+  const upperTask = taskSelected.previousElementSibling;
+  if (upperTask !== null) {
+    const swapName = upperTask.innerText;
+    const swapState = upperTask.className;
+    upperTask.innerText = taskSelected.innerText;
+    upperTask.className = taskSelected.className;
+    taskSelected.innerText = swapName;
+    taskSelected.className = swapState;
+  }
+}
+function moveTaskDown() {
+  const taskSelected = document.querySelector('.selected');
+  if (taskSelected === null) {
+    return;
+  }
+  const underTask = taskSelected.nextElementSibling;
+  if (underTask !== null) {
+    const swapName = underTask.innerText;
+    const swapState = underTask.className;
+    underTask.innerText = taskSelected.innerText;
+    underTask.className = taskSelected.className;
+    taskSelected.innerText = swapName;
+    taskSelected.className = swapState;
   }
 }
 function clearTask() {
@@ -74,34 +105,10 @@ function listSavedTasks() {
     }
   }
 }
-function moveTaskUp() {
+function removeTask() {
   const taskSelected = document.querySelector('.selected');
-  if (taskSelected === null) {
-    return;
-  }
-  const upperTask = taskSelected.previousElementSibling;
-  if (upperTask !== null) {
-    const swapName = upperTask.innerText;
-    const swapState = upperTask.className;
-    upperTask.innerText = taskSelected.innerText;
-    upperTask.className = taskSelected.className;
-    taskSelected.innerText = swapName;
-    taskSelected.className = swapState;
-  }
-}
-function moveTaskDown() {
-  const taskSelected = document.querySelector('.selected');
-  if (taskSelected === null) {
-    return;
-  }
-  const underTask = taskSelected.nextElementSibling;
-  if (underTask !== null) {
-    const swapName = underTask.innerText;
-    const swapState = underTask.className;
-    underTask.innerText = taskSelected.innerText;
-    underTask.className = taskSelected.className;
-    taskSelected.innerText = swapName;
-    taskSelected.className = swapState;
+  if (taskSelected !== null) {
+    taskList.removeChild(taskSelected);
   }
 }
 
@@ -114,3 +121,4 @@ movedownButton.onclick = moveTaskDown;
 clearButton.onclick = clearTask;
 clearDoneButton.onclick = clearCompletedTasks;
 saveTasksButton.onclick = saveTasks;
+removeTaskButton.onclick = removeTask;
