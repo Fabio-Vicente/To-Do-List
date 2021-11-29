@@ -1,3 +1,8 @@
+h1 {
+  text-decoration: underline 2px;
+  margin-bottom: 12px;
+}
+
 .selected {
   background-color: gray;
 }
