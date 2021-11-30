@@ -4,23 +4,18 @@ const taskList = document.getElementById('lista-tarefas');
 const settings = document.getElementById('settings');
 const clearButton = document.createElement('button');
 clearButton.id = 'apaga-tudo';
-clearButton.innerText = 'Limpar';
 const clearDoneButton = document.createElement('button');
 clearDoneButton.id = 'remover-finalizados';
-clearDoneButton.innerText = 'Finalizados';
 const saveTasksButton = document.createElement('button');
 saveTasksButton.id = 'salvar-tarefas';
-saveTasksButton.innerText = 'Salvar';
 const moveUpButton = document.createElement('button');
 moveUpButton.id = 'mover-cima';
-moveUpButton.innerText = 'Acima';
 const moveDownButton = document.createElement('button');
 moveDownButton.id = 'mover-baixo';
-moveDownButton.innerText = 'Abaixo';
 const removeTaskButton = document.createElement('button');
 removeTaskButton.id = 'remover-selecionado';
-removeTaskButton.innerText = 'Remover';
-let numberOfTasks = 0;
+/* removeTaskButton.innerText = 'Remover'; */
+/* let numberOfTasks = 0; */
 let completed = 0;
 
 function clearInput() {
@@ -36,16 +31,18 @@ function modifiedTaskList() {
     saveTasksButton.innerText = 'Salvar';
   }
 }
-function inputTask() {
-  const li = document.createElement('li');
-  li.innerText = input.value;
-  taskList.appendChild(li);
-  clearInput();
-  numberOfTasks += 1;
-  if (numberOfTasks === 1) {
-    showTasksButtons();
+function inputTask(event) {
+  if (event.type === 'click' || event.key === 'Enter') {
+    const li = document.createElement('li');
+    li.innerText = input.value;
+    taskList.appendChild(li);
+    clearInput();
+    /* numberOfTasks += 1;
+    if (numberOfTasks === 1) {
+      showTasksButtons();
+    } */
+    modifiedTaskList();
   }
-  modifiedTaskList();
 }
 function unselectedTask(task) {
   if (task !== null) {
@@ -140,10 +137,17 @@ function removeTask() {
     modifiedTaskList();
   }
 }
+function hideButtons() {
+  settings.removeChild(clearButton);
+  settings.removeChild(saveTasksButton);
+  showSelectButtons(false);
+  showCompleteButtons(0);
+}
 function clearTask() {
   for (; taskList.children.length !== 0;) {
     taskList.removeChild(taskList.children[0]);
   }
+  hideButtons();
   modifiedTaskList();
 }
 function clearCompletedTasks() {
@@ -168,9 +172,8 @@ function saveTasks() {
   }
   localStorage.setItem('tasks', JSON.stringify(tasks));
   saveTasksButton.classList.add('saved');
-  saveTasksButton.innerText = 'Salvo!';
 }
-function isSelected(task) {
+/* function isSelected(task) {
   if (task.classList.contains('selected')) {
     return 1;
   }
@@ -181,7 +184,7 @@ function isCompleted(task) {
     return 1;
   }
   return 0;
-}
+} */
 function showButtons(select, complete) {
   showTasksButtons();
   if (select) {
@@ -194,26 +197,27 @@ function showButtons(select, complete) {
 function listSavedTasks() {
   const savedTasks = JSON.parse(localStorage.getItem('tasks'));
   if (savedTasks !== null) {
-    let selected;
+    /* let selected; */
     for (let i = 0; i < savedTasks.length; i += 1) {
       const task = document.createElement('li');
       task.innerText = savedTasks[i].text;
       task.className = savedTasks[i].state;
       taskList.appendChild(task);
-      numberOfTasks += 1;
+      /* numberOfTasks += 1;
       selected = isSelected(task);
-      completed += isCompleted(task);
+      completed += isCompleted(task); */
     }
-    showButtons(selected, completed);
+    /* showButtons(selected, completed); */
   }
 }
 
-//  Chamada necessário para se passar nos testes
+//  Chamada necessária para se passar nos testes
 showButtons(1, 1);
 //
 
 window.onload = listSavedTasks;
 button.onclick = inputTask;
+input.onkeyup = inputTask;
 taskList.onclick = selectTask;
 taskList.ondblclick = completeTask;
 moveUpButton.onclick = moveTaskUp;
