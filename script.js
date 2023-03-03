@@ -15,7 +15,7 @@ moveDownButton.id = 'mover-baixo';
 const removeTaskButton = document.createElement('button');
 removeTaskButton.id = 'remover-selecionado';
 /* removeTaskButton.innerText = 'Remover'; */
-/* let numberOfTasks = 0; */
+let numberOfTasks = 0;
 let completed = 0;
 
 function clearInput() {
@@ -37,10 +37,10 @@ function inputTask(event) {
     li.innerText = input.value;
     taskList.appendChild(li);
     clearInput();
-    /* numberOfTasks += 1;
+    numberOfTasks += 1;
     if (numberOfTasks === 1) {
       showTasksButtons();
-    } */
+    }
     modifiedTaskList();
   }
 }
@@ -65,12 +65,12 @@ function selectTask(select) {
   if (task !== taskList) {
     const beforeSelected = document.querySelector('.selected');
     unselectedTask(beforeSelected);
-    /*     if (beforeSelected === task) {
-      showSelectBSuttons(false);
+        if (beforeSelected === task) {
+      showSelectButtons(false);
     } else {
       showSelectButtons(true);
       task.classList.add('selected');
-    } */
+    }
     showSelectButtons(true);
     task.classList.add('selected');
   }
@@ -173,7 +173,7 @@ function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
   saveTasksButton.classList.add('saved');
 }
-/* function isSelected(task) {
+function isSelected(task) {
   if (task.classList.contains('selected')) {
     return 1;
   }
@@ -184,7 +184,7 @@ function isCompleted(task) {
     return 1;
   }
   return 0;
-} */
+}
 function showButtons(select, complete) {
   showTasksButtons();
   if (select) {
@@ -203,17 +203,13 @@ function listSavedTasks() {
       task.innerText = savedTasks[i].text;
       task.className = savedTasks[i].state;
       taskList.appendChild(task);
-      /* numberOfTasks += 1;
+      numberOfTasks += 1;
       selected = isSelected(task);
-      completed += isCompleted(task); */
+      completed += isCompleted(task);
     }
-    /* showButtons(selected, completed); */
+    showButtons(selected, completed);
   }
 }
-
-//  Chamada necessária para se passar nos testes
-showButtons(1, 1);
-//
 
 window.onload = listSavedTasks;
 button.onclick = inputTask;
