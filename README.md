@@ -87,9 +87,11 @@ Once you have procedure on the [installation process](#instalation), open the [i
 
 You can add tasks as they arise on your routine. For doing so, type a task description on the input field and click on <span><img src=Icons/vector61-716-01.jpg width=18 alt="Plus button" /></span> button, or simply press `enter` and it will be added on your list.
 
+<br />
 <div align=center>
   <img src=assets/screenshots/add-tasks.gif alt="Adding tasks" width=70% />
 </div>
+<br />
 
 #### Remove task
 
@@ -97,9 +99,11 @@ Miswrote some of your tasks? You can easily remove it.
 
 First of all, select the incorrect task. Now, you must be seeing new buttons on the bottom of list. Click on <span><img src=Icons/Basic_Elements_342.jpg width=18 alt="Minus button" /></span> one, and get rid of this unwanted entry.
 
+<br />
 <div align=center>
   <img src=assets/screenshots/remove-task.gif alt="Removing task" width=70% />
 </div>
+<br />
 
 > Hint: use the <span><img src=Icons/vecteezy_icon-vector-of-eraser-white-moon-style_.jpg width=18 alt="Erase button" /></span> button to clear all the tasks at once.
 
@@ -109,9 +113,11 @@ Choose the task viewing order on your list. You can do this by setting the most 
 
 Set your desired order with <span><img src=Icons/vecteezy_arrow-on-white-background_up.jpg width=18 alt="Arrow up button"/></span> and <span><img src=Icons/vecteezy_arrow-on-white-background_down.jpg width=18 alt="Arrow down button" /></span> buttons.
 
+<br />
 <div align=center>
   <img src=assets/screenshots/reorder-tasks.gif alt="Reordering tasks" width=70% />
 </div>
+<br />
 
 #### Complete your tasks
 
@@ -119,9 +125,11 @@ Have you complete one of your tasks? Mark it as done! Just double click on it an
 
 > Missmark it? Double click again and it get its original state.
 
+<br />
 <div align=center>
   <img src=assets/screenshots/complete-tasks.gif alt="Completing tasks" width=70% />
 </div>
+<br />
 
 > Have you noticed a new button here? The <span><img src=Icons/vector61-193-01.jpg width=18 alt="Check button" /></span> button is used when is desired to clear only done tasks. It can be useful when you have a batch of jobs that were finished.
 
